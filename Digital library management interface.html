@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Library</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+        }
+
+        header {
+            background-color: #263238;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        nav {
+            background-color: #37474f;
+            padding: 12px;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #80cbc4;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 25px auto;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .search-box input,
+        .search-box select {
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-box input {
+            flex: 1;
+        }
+
+        /* CSS Grid */
+        .book-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .book-card {
+            background: white;
+            padding: 18px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .book-cover {
+            width: 120px;
+            height: 160px;
+            background-color: #90caf9;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .book-card h3 {
+            margin: 15px 0 8px;
+        }
+
+        .author {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .available {
+            color: green;
+            font-weight: bold;
+        }
+
+        .unavailable {
+            color: red;
+            font-weight: bold;
+        }
+
+        section {
+            margin-top: 40px;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            color: #263238;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #37474f;
+            color: white;
+        }
+
+        ul {
+            background: white;
+            padding: 20px 40px;
+            line-height: 2;
+            border-radius: 8px;
+        }
+
+        footer {
+            margin-top: 40px;
+            background-color: #263238;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .search-box {
+                flex-direction: column;
+            }
+
+            nav a {
+                display: block;
+                margin: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 Digital Library</h1>
+    <p>Explore. Read. Learn.</p>
+</header>
+
+<nav>
+    <a href="#home">Home</a>
+    <a href="#books">Books</a>
+    <a href="#catalog">Catalog</a>
+    <a href="#rules">Library Rules</a>
+</nav>
+
+<div class="container">
+
+    <section id="home">
+        <h2>Welcome to Our Digital Library</h2>
+        <p>
+            Find your favorite books, explore different categories,
+            and check book availability easily.
+        </p>
+    </section>
+
+    <section id="books">
+        <h2>Search Books</h2>
+
+        <div class="search-box">
+            <input type="text" id="search" placeholder="Search by book or author...">
+
+            <select id="category">
+                <option value="all">All Categories</option>
+                <option value="Programming">Programming</option>
+                <option value="Science">Science</option>
+                <option value="Fiction">Fiction</option>
+                <option value="Education">Education</option>
+            </select>
+        </div>
+
+        <div class="book-grid" id="bookGrid">
+
+            <div class="book-card" data-category="Programming">
+                <div class="book-cover">PYTHON</div>
+                <h3>Python Basics</h3>
+                <p class="author">Author: John Smith</p>
+                <p class="available">Available</p>
+            </div>
+
+            <div class="book-card" data-category="Science">
+                <div class="book-cover">SCIENCE</div>
+                <h3>Basic Science</h3>
+                <p class="author">Author: David Brown</p>
+                <p class="available">Available</p>
+            </div>
+
+            <div class="book-card" data-category="Fiction">
+                <div class="book-cover">STORY</div>
+                <h3>Great Stories</h3>
+                <p class="author">Author: Emily Rose</p>
+                <p class="unavailable">Not Available</p>
+            </div>
+
+            <div class="book-card" data-category="Education">
+                <div class="book-cover">LEARN</div>
+                <h3>Learn Smart</h3>
+                <p class="author">Author: Robert Lee</p>
+                <p class="available">Available</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="catalog">
+        <h2>Library Catalog</h2>
+
+        <table>
+            <tr>
+                <th>Book Name</th>
+                <th>Author</th>
+                <th>Category</th>
+                <th>Status</th>
+            </tr>
+
+            <tr>
+                <td>Python Basics</td>
+                <td>John Smith</td>
+                <td>Programming</td>
+                <td>Available</td>
+            </tr>
+
+            <tr>
+                <td>Basic Science</td>
+                <td>David Brown</td>
+                <td>Science</td>
+                <td>Available</td>
+            </tr>
+
+            <tr>
+                <td>Great Stories</td>
+                <td>Emily Rose</td>
+                <td>Fiction</td>
+                <td>Not Available</td>
+            </tr>
+
+            <tr>
+                <td>Learn Smart</td>
+                <td>Robert Lee</td>
+                <td>Education</td>
+                <td>Available</td>
+            </tr>
+        </table>
+    </section>
+
+    <section id="rules">
+        <h2>Library Rules</h2>
+
+        <ul>
+            <li>Maintain silence inside the library.</li>
+            <li>Return books on time.</li>
+            <li>Keep books clean and safe.</li>
+            <li>Do not damage library books.</li>
+            <li>Carry your library card when borrowing books.</li>
+        </ul>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2026 Digital Library Management System</p>
+</footer>
+
+<script>
+    const search = document.getElementById("search");
+    const category = document.getElementById("category");
+    const books = document.querySelectorAll(".book-card");
+
+    function filterBooks() {
+        const searchText = search.value.toLowerCase();
+        const selectedCategory = category.value;
+
+        books.forEach(book => {
+            const text = book.innerText.toLowerCase();
+            const bookCategory = book.dataset.category;
+
+            if (
+                text.includes(searchText) &&
+                (selectedCategory === "all" ||
+                 bookCategory === selectedCategory)
+            ) {
+                book.style.display = "block";
+            } else {
+                book.style.display = "none";
+            }
+        });
+    }
+
+    search.addEventListener("input", filterBooks);
+    category.addEventListener("change", filterBooks);
+</script>
+
+</body>
+</html>
